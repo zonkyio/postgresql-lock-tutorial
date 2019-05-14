@@ -7,7 +7,8 @@ Start: Download file and run.
 
 
 # How to find who on local system take lock
-```postgres=# SELECT client_addr,client_port FROM pg_stat_activity WHERE pid = 5232;
+```
+postgres=# SELECT client_addr,client_port FROM pg_stat_activity WHERE pid = 5232;
  client_addr | client_port
 -------------+-------------
  127.0.0.1   |       56586
