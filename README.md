@@ -1,5 +1,5 @@
-# PostgreSQL lock tutorial 
-Show example how to resolve PostgreSQL lock issue
+# PostgreSQL lock simulator
+Create environment where everyone can test how to resolve PostgreSQL lock issue.
  * requirements: docker, Unix(Linux or Mac), bash
 
 Start: Download file and run.
