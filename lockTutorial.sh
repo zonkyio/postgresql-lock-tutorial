@@ -42,13 +42,11 @@ docker exec psqlLock /usr/bin/psql -U postgres -d postgres \
 
 sleep 2s;
 
-# SELECT waiting to done ALTER
-docker exec psqlLock /usr/bin/psql -U postgres -d postgres \
- -c "select * from cities LIMIT 2;" 1>/dev/null 2>&1 &
-
-# SELECT waiting to done ALTER
-docker exec psqlLock /usr/bin/psql -U postgres -d postgres \
- -c "select * from cities LIMIT 5;" 1>/dev/null 2>&1 &
+for I in $(seq 1 10); do 
+ # SELECT waiting to done ALTER
+ docker exec psqlLock /usr/bin/psql -U postgres -d postgres \
+  -c "select * from cities LIMIT ${I};" 1>/dev/null 2>&1 &
+done
 
 sleep 1s;
 echo "      -------- Locks ----------------"
@@ -73,7 +71,12 @@ echo """
  ---- This show concrete PID info:
  SELECT backend_start,query,state FROM pg_stat_activity WHERE pid = ___PID___;
 
- ---- This brutal terminate PID:
+
+ ---- cancels the running query by PID
+ SELECT pg_cancel_backend(_____PID____);
+
+ ---- IF cancels is NOT enough, then
+ ---- terminates the entire process and thus the database connection
  SELECT pg_terminate_backend( _____PID____ );
 
  ----- This is your command line:
