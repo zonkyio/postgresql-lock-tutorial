@@ -2,7 +2,7 @@
 Create environment where everyone can test how to resolve PostgreSQL lock issue.
  * requirements: docker, Unix(Linux or Mac), bash
 
-Start: Download file and run.
+Start: Download file ./lockTutorial.sh and run(. ./lockTutorial.sh).
 
 
 
