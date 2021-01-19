@@ -1,4 +1,5 @@
 # PostgreSQL lock simulator
+
 Create environment where everyone can test how to resolve PostgreSQL lock issue.
  * requirements: docker, Unix(Linux or Mac), bash
 
